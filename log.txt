@@ -1,0 +1,71 @@
+commit 9920d4a81c0e55944e8ee03387a3ea453ac6eff0
+Author: no-life-tech-nerd <2604171@sit.singaporetech.edu.sg>
+Date:   Tue Nov 3 23:47:17 2026 +0800
+
+    fix(inventory): do not append product if error
+
+commit d20da55cb98df4a22c40fccd088a684408903515
+Author: no-life-tech-nerd <2604171@sit.singaporetech.edu.sg>
+Date:   Tue Nov 3 23:43:31 2026 +0800
+
+    fix(docker): add classes to Dockerfile
+
+commit c6c8d13943ea8f149602f5d50b78502c697e493b
+Author: no-life-tech-nerd <2604171@sit.singaporetech.edu.sg>
+Date:   Tue Nov 3 23:39:56 2026 +0800
+
+    chore: rename main python file
+
+commit 7460af0eead5b070b6eab55279ababac5410f117
+Author: no-life-tech-nerd <2604171@sit.singaporetech.edu.sg>
+Date:   Tue Nov 3 23:36:31 2026 +0800
+
+    fix(main): fix JSON load and save to be compatible with classes
+
+commit b835247a5c000412717ca503cc8657e8343a56b3
+Author: no-life-tech-nerd <2604171@sit.singaporetech.edu.sg>
+Date:   Tue Nov 3 23:31:16 2026 +0800
+
+    fix: rename prodId to product_id in inventory.json
+
+commit 9d090b0d2091d13e2d4d41c56647ee3d0b82bcaf
+Author: no-life-tech-nerd <2604171@sit.singaporetech.edu.sg>
+Date:   Tue Nov 3 23:05:11 2026 +0800
+
+    feat(main): refactored main inventory manager to use classes & methods
+
+commit af27ba038c87b5b6561d914a149a8ac6a153d660
+Author: no-life-tech-nerd <2604171@sit.singaporetech.edu.sg>
+Date:   Tue Nov 3 22:39:56 2026 +0800
+
+    feat(inventory): add search_inventory method
+
+commit ad527897616b9f85868465bfe2bacfe406f0fbc7
+Author: no-life-tech-nerd <2604171@sit.singaporetech.edu.sg>
+Date:   Tue Nov 3 22:39:26 2026 +0800
+
+    feat(inventory): add update_product_stock method
+
+commit d5cd024c798a99b23c86dc8669aca4e0d115bc75
+Author: no-life-tech-nerd <2604171@sit.singaporetech.edu.sg>
+Date:   Tue Nov 3 22:33:02 2026 +0800
+
+    feat(product): add get_* methods
+
+commit 260c21991b97b1d2e1fb798a4553f0296447b1bb
+Author: no-life-tech-nerd <2604171@sit.singaporetech.edu.sg>
+Date:   Tue Nov 3 22:32:29 2026 +0800
+
+    feat(inventory): add inventory class + add_product method
+
+commit 60c700cae8a5e12a495ed328da32590e7479b9e7
+Author: no-life-tech-nerd <2604171@sit.singaporetech.edu.sg>
+Date:   Tue Nov 3 22:31:38 2026 +0800
+
+    feat(oop): add product class
+
+commit b86bd3857d8407645b135d838b2111c721ed747d
+Author: no-life-tech-nerd <2604171@sit.singaporetech.edu.sg>
+Date:   Tue Nov 3 22:30:18 2026 +0800
+
+    feat: initial commit of structure + lab 5 work
