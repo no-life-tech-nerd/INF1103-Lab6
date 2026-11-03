@@ -22,17 +22,18 @@ class Inventory:
 
         print("-----------------")
 
-    def add_product(self) -> Product | None:
-        print("Add New Product")
-        print("---------------")
-        newProdId = self.int_input("Enter product ID: ")
-        newName = input("Enter product name: ")
-        try:
-            newPrice = round(float(input("Enter product price: ")), 2)
-        except ValueError:
-            warning("\nInput must be a float of up to 2 decimal places, try again!\n")
-            return
-        newStock = self.int_input("Enter stock quantity: ")
+    def add_product(self, newProdId: int, newName: str, newPrice: float, newStock: int) -> Product | None:
+        # TODO: port this back to main program
+        # print("Add New Product")
+        # print("---------------")
+        # newProdId = self.int_input("Enter product ID: ")
+        # newName = input("Enter product name: ")
+        # try:
+        #     newPrice = round(float(input("Enter product price: ")), 2)
+        # except ValueError:
+        #     warning("\nInput must be a float of up to 2 decimal places, try again!\n")
+        #     return
+        # newStock = self.int_input("Enter stock quantity: ")
 
         for p in self.products:
             if newProdId == p.get_product_id():
@@ -46,3 +47,20 @@ class Inventory:
         except:
             print("\nUnknown error adding new product to inventory, try again!\n")
             return
+
+    def update_product_stock(self, newProdId: int, newStock: int) -> None:
+        # TODO: port this back to main program
+        # print("Update Stock")
+        # print("------------")
+        # prodId = self.int_input("Enter product ID: ")
+        for p in self.products:
+            if newProdId == p.get_product_id():
+                print("\nProduct found:\n")
+                p.display_information()
+                # p.update_stock(self.int_input("New Stock Quantity: ")) # TODO: port this too
+                p.update_stock(newStock)
+                if p.get_stock() > 500:
+                    warning(f"There are more than 500 quantity of item {p.get_name()} in inventory!")
+                return
+        print("Product not found.")
+
