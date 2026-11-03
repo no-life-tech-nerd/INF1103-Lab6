@@ -1,0 +1,141 @@
+import json
+from logging import warning
+from os import environ, getcwd
+from pickle import load
+
+errorCount = int(0)
+
+dataFile = f"{str(environ.get('DATA_PATH') or getcwd())}/inventory.json"
+
+inventory: list[dict] = []
+
+def warnUser(message: str) -> None:
+    global errorCount
+    warning(message)
+    errorCount += 1
+
+def int_input(message: str) -> int:
+    while True:
+        try:
+            return int(input(message))
+        except ValueError:
+            warnUser("\nInput must be an integer, try again!\n")
+
+def load_inventory() -> list[dict]:
+    try:
+        with open(dataFile, 'r') as file:
+            return json.load(file)
+    except FileNotFoundError:
+        print("File not found, using empty inventory.")
+        return []
+
+def display_all() -> None:
+    print("Current Inventory")
+    print("-----------------")
+
+    # try:
+    for product in inventory:
+        print(f"ID: {product["prodId"]} | Name: {product["name"]} | Price: ${round(product["price"], 2):.2f} | Stock: {product["stock"]}")
+    # except:
+    #     print("No products in inventory to display!")
+
+    print("-----------------")
+
+def add_product() -> None:
+    print("Add New Product")
+    print("---------------")
+    prodId = int_input("Enter product ID: ")
+    name = input("Enter product name: ")
+    try:
+        price = round(float(input("Enter product price: ")), 2)
+    except ValueError:
+        warnUser("\nInput must be a float of up to 2 decimal places, try again!\n")
+        return
+    stock = int_input("Enter stock quantity: ")
+
+    for product in inventory:
+        if prodId == product["prodId"]:
+            warnUser("\nThis product ID already exists, try again!\n")
+            return
+        elif name == product["name"]:
+            warnUser("\nThis product name already exists, try again!\n")
+            return
+
+    try:
+        inventory.append({"prodId": prodId, "name": name, "price": price, "stock": stock})
+        print("\nProduct added successfully!\n")
+        return
+    except:
+        print("\nUnknown error adding new product to inventory, try again!\n")
+        return
+
+def update_stock() -> None:
+    print("Update Stock")
+    print("------------")
+    prodId = int_input("Enter product ID: ")
+    for product in inventory:
+        if prodId == product["prodId"]:
+            print(f"\nProduct found:\nName: {product["name"]}\nCurrent Stock: {product["stock"]}\n")
+            new_stock = int_input("New Stock Quantity: ")
+            product["stock"] = new_stock
+            if new_stock > 500:
+                warnUser(f"There are more than 500 quantity of item {product["name"]} in inventory!")
+            return
+    print("Product not found.")
+
+def search_product() -> None:
+    print("Search Product")
+    print("--------------")
+    prodId = int_input("Enter product ID: ")
+    for product in inventory:
+        if prodId == product["prodId"]:
+            print(f"\nProduct found:\nID: {product["prodId"]}\nName: {product["name"]}\nPrice: {round(product["price"], 2):.2f}\nCurrent Stock: {product["stock"]}\n")
+            return
+    print("Product not found.")
+
+def save_inventory() -> None:
+    with open(dataFile, 'w') as file:
+        json.dump(inventory, file)
+
+inventory = load_inventory()
+
+while True:
+    print("\n========================================")
+    print("INVENTORY MANAGEMENT SYSTEM")
+    print("========================================")
+    print("----------- MENU -----------")
+    print("1. Display All Products")
+    print("2. Add Product")
+    print("3. Update Stock")
+    print("4. Search Product")
+    print("5. Save Inventory")
+    print("6. Exit")
+    print("----------------------------")
+
+    option = input("Enter option: ")
+
+    if option == "1":
+        display_all()
+
+    elif option == "2":
+        add_product()
+
+    elif option == "3":
+        update_stock()
+
+    elif option == "4":
+        search_product()
+
+    elif option == "5":
+        print("\nSaving inventory...")
+        save_inventory()
+
+    elif option == "6":
+        print("\nSaving inventory before exit...")
+        save_inventory()
+        print("Thank you for using Inventory Management System.")
+        print("Program terminated.")
+        break
+
+    else:
+        print("Invalid option. Please try again.")
