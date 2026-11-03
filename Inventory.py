@@ -3,14 +3,17 @@ from logging import warning
 
 class Inventory:
     def __init__(self, products: list[Product]):
-        self.products = products
+        self.__products = products
+
+    def get_products(self) -> list[Product]:
+        return self.__products
 
     def display_all(self) -> None:
         print("Current Inventory")
         print("-----------------")
 
         try:
-            for p in self.products:
+            for p in self.__products:
                 p.display_information()
         except:
             warning("Error while displaying all inventory!")
@@ -18,21 +21,21 @@ class Inventory:
         print("-----------------")
 
     def add_product(self, prod: Product) -> None:
-        for p in self.products:
+        for p in self.__products:
             if prod.get_product_id() == p.get_product_id():
                 warning("\nThis product ID already exists, try again!\n")
             elif prod.get_name() == p.get_name():
                 warning("\nThis product name already exists, try again!\n")
 
         try:
-            self.products.append(prod)
+            self.__products.append(prod)
             print("\nProduct added successfully!\n")
         except:
             print("\nUnknown error adding new product to inventory, try again!\n")
             return
 
     def update_product_stock(self, newProdId: int, newStock: int) -> None:
-        for p in self.products:
+        for p in self.__products:
             if newProdId == p.get_product_id():
                 print("\nProduct found:\n")
                 try:
@@ -48,7 +51,7 @@ class Inventory:
         warning("Product not found.")
 
     def search_inventory(self, prodId: int) -> None:
-        for p in self.products:
+        for p in self.__products:
             if prodId == p.get_product_id():
                 p.display_information()
                 return
