@@ -24,8 +24,10 @@ class Inventory:
         for p in self.__products:
             if prod.get_product_id() == p.get_product_id():
                 warning("\nThis product ID already exists, try again!\n")
+                return
             elif prod.get_name() == p.get_name():
                 warning("\nThis product name already exists, try again!\n")
+                return
 
         try:
             self.__products.append(prod)
