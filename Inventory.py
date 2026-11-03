@@ -64,3 +64,8 @@ class Inventory:
                 return
         print("Product not found.")
 
+    def search_inventory(self, prodId: int) -> None:
+        for p in self.products:
+            if prodId == p.get_product_id():
+                p.display_information()
+                return
